@@ -5,7 +5,7 @@ import './index.scss';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-const App = () => (
+const App: React.FC = () => (
   <div>
     hi
   </div>
