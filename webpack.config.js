@@ -83,6 +83,10 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
+    fallback: {
+      fs: false,
+      path: false,
+    },
   },
   optimization: optimization(),
   devServer: {

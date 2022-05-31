@@ -1,4 +1,97 @@
-body{
-  background-color: gray;
+@font-face {
+  font-family: "ChelseaMarket";
+  src: url("assets/fonts/ChelseaMarket-Regular.ttf"),
+ }
+
+@import "./styles/colors";
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: $mainBlue;
+  overflow: hidden;
+}
+
+.wrapper {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+header {
+  background-color: $darkblue;
   color: white;
+  height: 21px;
+  display: grid;
+  grid-template-columns: auto 85px;
+  user-select: none;
+}
+
+header span {
+  margin-top: 2px;
+  font-family: 'ChelseaMarket';
+  font-size: 15px;
+  color: #a3a3a3;
+  -webkit-app-region: drag;
+  margin-left: 10px
+}
+
+header nav {
+  -webkit-app-region: no-drag;
+  justify-self: right
+}
+
+header nav ul {
+  margin-top: -2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  float: left;
+}
+
+header nav ul li img {
+  height: 9px;
+  width: 9px;
+  padding: 0 8px 0 8px;
+  margin: 0 0 0 auto;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+a {
+  -webkit-user-drag: none;
+}
+
+#min-btn {
+  width: 25px;
+  height: 21px;
+  cursor: pointer;
+}
+
+#max-btn {
+  width: 25px;
+  height: 21px;
+  cursor: pointer;
+}
+
+#close-btn {
+  width: 25px;
+  height: 21px;
+  cursor: pointer;
+}
+
+#min-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#max-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#close-btn:hover {
+  background-color: red;
 }

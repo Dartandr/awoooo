@@ -3,14 +3,14 @@ import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 import './index.scss';
 import { store } from './store';
-import MyElement from './myElement';
+import Main from './main';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 const App: React.FC = () => (
   <Provider store={store}>
-    <MyElement/>
+    <Main />
   </Provider>
 );
 
