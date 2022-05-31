@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "OpenSansSemiBold";
+  src: url("../../../assets/fonts/OpenSans-SemiBold.ttf"),
+}
+
+@import "../../../styles/colors";
+
+.nav {
+  grid-area: n;
+  background-color: $darkblue;
+  user-select: none;
+  height: 100%;
+  font-family: "OpenSansSemiBold";
+  position: relative;
+}
+
+.navitem {
+  margin-top: 20px;
+}
+
+.navitem a {
+  color: $fontBlue;
+  text-decoration: none;
+}
+
+.active {
+  color: #ffffff;
+}
+
+.item {
+  margin-left: 15px;
+  font-size: 16px;
+  font-family: "OpenSansSemiBold";
+  font-weight: 600;
+  display: flex;
+  line-height: 24px;
+}
+
+.item img {
+  margin-right: 7px;
+}
+
+.friends {
+  margin-left: 20px;
+  margin-top: 1px;
+  font-size: 18px;
+  font-family: "OpenSansSemiBold";
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.Settings {
+  position: absolute;
+  bottom: 15px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.messageNav {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  cursor: pointer;
+
+  .messageDot {
+    height: 10px;
+    width: 10px;
+    border-radius: 100px;
+    background-color: #ff3b3b;
+    position: absolute;
+    top: -4px;
+    right: -5px;
+    display: none;
+  }
+}
+
+a.active {
+  color: #ffffff;
+}

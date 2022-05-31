@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "OpenSansSemiBold";
+  src: url("../../assets/fonts/OpenSans-SemiBold.ttf"),
+}
+
+@import "../../styles/colors";
+
+.wrapper {
+    color: white;
+    height: calc(100vh - 21px);
+    width: 100vw;
+    font-family: "Open Sans", Arial, sans-serif;
+}
+
+.login {
+    background-color: $darkblue;
+    width: 476px;
+    height: 196px;
+    border-radius: 8px;
+    box-shadow: 1px 4px 8px rgba($color: #000000, $alpha: 0.25);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    img {
+        margin-top: 23px;
+        margin-left: 16px;
+        height: 150px;
+        width: 150px;
+    }
+}
+
+.loginActions {
+    margin-top: 15px;
+    margin-left: 25px;
+}
+
+.label {
+    font-weight: 600;
+    color: $fontGray;
+    font-size: 14px;
+    margin-bottom: 3px;
+    font-family: "OpenSansSemiBold";
+}
+
+.textInput {
+    height: 20px;
+    width: 260px;
+    border: none;
+    border-radius: 4px;
+    background: $mainBlue;
+    color: #d8d8d8;
+    outline: none;
+    resize: none;
+    padding: 0px 5px 2px 5px;
+    font-size: 12px;
+    font-family: "OpenSansSemiBold";
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow-x: hidden;
+    cursor: text;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.links {
+    display: flex;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 10px;
+    color: $fontOrange;
+    justify-content: space-between;
+    font-family: "OpenSansSemiBold";
+    cursor: pointer;
+}
+
+.button {
+    margin-top: 15px;
+    margin-left: 67px;
+    height: 22px;
+    width: 135px;
+    text-align: center;
+    color: $fotnblueDarker;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    cursor: pointer;
+    background-color: $secondaryOrange;
+    border-radius: 4px;
+    box-shadow: rgba($color: #000000, $alpha: 0.25);
+    text-decoration: none;
+}
+
+a{
+  text-decoration: none;
+}
+.button:hover {
+    background-color: $secondaryOrangeHover;
+}
