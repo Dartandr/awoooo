@@ -43,6 +43,7 @@ const Main: React.FC = () => {
               <Route path="anime/:animeId" element={<Anime />}/>
               <Route path="profile" element={<div>profile</div>} />
               <Route path="list" element={<div>list</div>} />
+              <Route path="player" element={<div>player</div>} />
             </Route>
           </Routes>
         </div>

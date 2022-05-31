@@ -46,7 +46,7 @@ const Navigation: React.FC = () => {
 
       <div className={style.navitem}>
         <NavLink
-          to={'/login'}
+          to={'/player'}
           className={({ isActive }) => (isActive ? style.active : '')}
         >
           <div className={style.item}>
