@@ -1,4 +1,5 @@
 const electron = require('electron');
+const {getPluginEntry} = require("mpv.js");
 const app = electron.app;
 const IpcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
@@ -6,7 +7,13 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require('path');
 const isDev = require('electron-is-dev');
 
+const pluginDir = path.join(path.dirname(require.resolve("mpv.js")), "build", "Release");
 let mainWindow;
+
+if (process.platform !== "linux") {process.chdir(pluginDir);}
+app.commandLine.appendSwitch("no-sandbox");
+app.commandLine.appendSwitch("ignore-gpu-blacklist");
+app.commandLine.appendSwitch("register-pepper-plugins", getPluginEntry(pluginDir));
 
 function createWindow() {
   mainWindow = new BrowserWindow({
