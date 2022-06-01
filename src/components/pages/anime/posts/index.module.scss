@@ -1,0 +1,48 @@
+@import "../../../../styles/colors";
+.wrapper {
+    background: $secondaryBlue;
+    border-radius: 4px;
+    margin: 10px 0;
+    box-shadow: 1px 4px 8px rgba($color: #000000, $alpha: 0.25);
+}
+.content {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    grid-template-rows: 46px 1fr;
+    grid-gap: 10px;
+    grid-template-areas:
+        "a i"
+        "c c";
+    padding: 10px;
+}
+
+.avatar {
+    grid-area: a;
+}
+
+.avatar img {
+    height: 46px;
+    width: 46px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.info {
+    grid-area: i;
+}
+
+.nickName {
+    font-size: 15px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 600;
+}
+
+.postDate {
+    font-size: 14px;
+    color: #a1a1a1;
+}
+
+.postContent {
+    grid-area: c;
+    white-space: pre-line;
+}

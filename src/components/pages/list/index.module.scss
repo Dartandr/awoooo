@@ -1,0 +1,90 @@
+@import "../../../styles/colors";
+.wrapper {
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    width: calc(100vw - 200px);
+    height: calc(100vh - 21px);
+    font-family: "OpenSans";
+}
+
+.scrollbar {
+    height: 4px;
+    background-color: #fd6161;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    width: 0;
+}
+
+a {
+    color: inherit;
+}
+
+.content {
+    padding: 10px;
+}
+
+.tableLabels {
+    display: grid;
+    grid-template-columns: 48px 42px 1fr 40px 70px 80px;
+    grid-gap: 10px;
+    font-size: 14px;
+    font-family: "OpenSansSemiBold";
+    text-align: center;
+}
+.tableLabelName {
+    text-align: left;
+}
+
+.spacerLine {
+    margin-top: 5px;
+    border-radius: 2px 2px 2px 2px;
+    background-color: $darkblue;
+    min-height: 4px;
+}
+
+.scrollableContent {
+    margin-top: 5px;
+    overflow: auto;
+    height: calc(100vh - 78px);
+    margin-right: -5px;
+}
+
+.elementWrapper {
+    display: grid;
+    grid-template-columns: 48px 42px 1fr 40px 70px 80px;
+    grid-gap: 10px;
+    margin-top: 5px;
+    height: 61px;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.verticalAlign {
+    height: 62px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.elementWrapper img {
+    height: 61px;
+    width: 41px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.firstColumn {
+    width: 48px;
+}
+.titleColumn {
+    text-align: left;
+}
+.fourthColumn {
+    width: 40px;
+}
+.fivesColumn {
+    width: 70px;
+}
+.sixColumn {
+    width: 80px;
+}

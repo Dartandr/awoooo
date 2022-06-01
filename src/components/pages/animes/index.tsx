@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Animes: React.FC = () => {
+const AnimePage: React.FC = () => {
   return <div>animes</div>;
 };
 
-export default Animes;
+export default AnimePage;

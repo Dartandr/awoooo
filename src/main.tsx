@@ -6,8 +6,10 @@ import IconCross from '@/assets/icons/icon-cross.svg';
 import windowManagment from './electronControls';
 import LoginPage from './components/login';
 import Content from './components/content';
-import Animes from './components/pages/animes'
+import Animes from './components/pages/animes';
 import Anime from './components/pages/anime';
+import Profile from './components/pages/profile';
+import List from './components/pages/list';
 
 const Main: React.FC = () => {
   return (
@@ -40,10 +42,11 @@ const Main: React.FC = () => {
             <Route path="login" element={<LoginPage />} />
             <Route path="/" element={<Content />}>
               <Route path="anime" element={<Animes />} />
-              <Route path="anime/:animeId" element={<Anime />}/>
-              <Route path="profile" element={<div>profile</div>} />
-              <Route path="list" element={<div>list</div>} />
+              <Route path="anime/:animeId" element={<Anime />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="list" element={<List />} />
               <Route path="player" element={<div>player</div>} />
+              <Route path="friends" element={<div>friends</div>} />
             </Route>
           </Routes>
         </div>

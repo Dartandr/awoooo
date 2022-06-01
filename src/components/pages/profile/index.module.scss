@@ -1,0 +1,272 @@
+@import "../../../styles/colors";
+
+.wrapper {
+  color: white;
+  height: calc(100vh - 51px);
+  width: calc(100vw - 200px);
+  font-family: "OpenSans";
+}
+
+.scrollbar {
+  height: 4px;
+  background-color: $mainOrange;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  width: 0;
+}
+
+.content {
+  padding: 6px 10px 10px 10px;
+  display: grid;
+  grid-template-rows: 145px 1fr;
+  grid-template-columns: 130px 1fr 175px;
+  grid-template-areas:
+    "p p r"
+    "l m r";
+  grid-gap: 10px;
+}
+
+.profileInfo {
+  grid-area: p;
+  height: 145px;
+  border-radius: 4px 4px 4px 4px;
+  display: grid;
+  grid-template-columns: 125px 1fr;
+  grid-gap: 10px;
+
+}
+
+.profileData {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.nickname {
+  font-size: 18px;
+  font-family: "OpenSansSemiBold";
+  font-weight: 600;
+  margin: 2px 0;
+}
+
+.status {
+  margin: 2px 0;
+  color: $fotnblueDarker;
+}
+
+.additionalInfo {
+  margin: 2px 0;
+}
+
+.listsLinks {
+  user-select: none;
+  margin: 4px 0;
+  display: flex;
+}
+
+.listsLinks img {
+  height: 20px;
+  width: 20px;
+  object-fit: cover;
+  margin-right: 5px;
+  border-radius: 100px;
+}
+
+.rightColumn {
+  grid-area: r;
+}
+
+.lastActivitiesTitle {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: $fontBlue;
+}
+
+.lastActivities {
+  margin-top: 5px;
+  height: 250px;
+  border-radius: 4px 4px 4px 4px;
+}
+
+.lastActivitiesContent {
+  margin-top: 10px;
+}
+
+.friendsTitle {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: $fontBlue;
+}
+
+.friends {
+  height: 121px;
+  border-radius: 4px 4px 4px 4px;
+  margin-top: 10px;
+}
+
+.friendsContent {
+  margin-top: 5px;
+
+  img {
+    height: 33px;
+    width: 33px;
+    justify-content: center;
+    margin-right: 13px;
+    margin-bottom: 10px;
+  }
+
+  width: 190px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profileButtons {
+  user-select: none;
+  grid-area: l;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  margin: 0 10px 0 20px;
+  img {
+    height: 24px;
+  }
+}
+
+.scrollableContent {
+  grid-area: m;
+  height: calc(100vh - 196px);
+  overflow: auto;
+  padding-right: 5px;
+}
+
+.test {
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.avatar {
+  user-select: none;
+  padding: 10px;
+}
+
+.avatar img {
+  height: 125px;
+  width: 125px;
+  object-fit: cover;
+  border-radius: 200px;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.animelist {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
+  background-color: $secondaryBlue;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.animeListColumn {
+  text-align: center;
+  cursor: pointer;
+}
+
+.animeListColumnTitle {
+  color: $fontBlue;
+}
+
+.animeListColumnValue {
+  color: $fotnblueDarker;
+}
+
+.characters {
+  user-select: none;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  height: 155px;
+}
+
+.charactersTitle {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.charactersContentWrapper {
+  overflow: hidden;
+}
+
+.charactersContent {
+  height: 133px;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    height: 127px;
+    width: 80px;
+    border-radius: 8px 8px 8px 8px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.characters {
+  user-select: none;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  height: 155px;
+}
+
+.charactersTitle {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.charactersContentWrapper {
+  overflow: hidden;
+}
+
+.charactersContent {
+  height: 133px;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    height: 127px;
+    width: 80px;
+    border-radius: 8px 8px 8px 8px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: $secondaryBlue;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $secondaryBlueHightlight;
+}

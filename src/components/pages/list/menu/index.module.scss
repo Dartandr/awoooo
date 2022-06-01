@@ -1,0 +1,90 @@
+@import "../../../../styles/colors";
+
+.wrapper{
+    grid-area: m;
+    background-color: $darkblue;
+    height: 100%;
+    padding-top: 10px;
+}
+.sorting{
+    height:calc(100vh - 40px);
+    width: 225px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+}
+.spacingline{
+    margin: 5px 13px 0 13px;
+    border-radius: 2px 2px 2px 2px;
+    background-color: $mainBlue;
+    min-height: 2px;
+}
+.type{
+    color: white;
+    font-size: 18px;
+    font-family: "OpenSansSemiBold";
+    margin-left: 13px;
+    margin-top: 11px;
+}
+.sortTitle{
+    color: $fontBlue;
+    font-size: 18px;
+    font-family: "OpenSansSemiBold";
+    margin-left: 13px;
+    margin-top: 0px;
+}
+.checkboxesWrapper{
+    margin-left: 13px;
+}
+.checkbox{
+    margin-top: 9px;
+    font-size: 14px;
+    font-family: "OpenSansSemiBold";
+    color: $fontBlue;
+}
+
+.customCheckbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.customCheckbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+.customCheckbox+label::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 2px solid $fontBlue;
+    border-radius: 100%;
+    margin-right: 7px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.customCheckbox:not(:disabled):not(:checked)+label:hover::before {
+    border-color: white;
+}
+
+.customCheckbox:not(:disabled):active+label::before {
+    border-color: white;
+}
+
+.customCheckbox:checked+label::before {
+    border-color: white;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5' cy='5' r='5' fill='white'/%3E%3C/svg%3E%0A");
+}
+
+label:hover{
+    color: white;
+}
+.checked{
+    color: white;
+}
