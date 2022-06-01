@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import IconMaximize from '@/assets/icons/icon-maximize.svg';
 import IconMinimize from '@/assets/icons/icon-minimize.svg';
 import IconCross from '@/assets/icons/icon-cross.svg';
@@ -37,7 +37,7 @@ const Main: React.FC = () => {
           </ul>
         </nav>
       </header>
-      <BrowserRouter>
+      <HashRouter>
         <div className="App">
           <Routes>
             <Route path="login" element={<LoginPage />} />
@@ -51,7 +51,7 @@ const Main: React.FC = () => {
             </Route>
           </Routes>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };
