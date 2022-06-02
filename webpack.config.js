@@ -35,7 +35,11 @@ const plugins = [
   new CopyWebpackPlugin({
     patterns: [
       {
-        from: path.resolve(__dirname, 'src/test'),
+        from: path.resolve(__dirname, 'src/mpv'),
+        to: path.resolve(__dirname, 'dist/mpv'),
+      },
+      {
+        from: path.resolve(__dirname, 'src/electron.js'),
         to: path.resolve(__dirname, 'dist'),
       },
     ],
@@ -77,7 +81,7 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './',
+    publicPath: devMode ? '/': './',
   },
   resolve: {
     extensions: ['.js', '.ts', '.svg', '.jsx', '.tsx'],
