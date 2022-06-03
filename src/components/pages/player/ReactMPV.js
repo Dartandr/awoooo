@@ -144,7 +144,7 @@ class ReactMPV extends React.PureComponent {
       display: 'block',
       width: '100%',
       height: '100%',
-      borderRadius: this.props.borderRadius,
+      borderRadius: this.props.radius,
       transition: 'border-radius 300ms ease',
     };
     const props = Object.assign({}, this.props, {
@@ -188,7 +188,7 @@ ReactMPV.propTypes = {
    * @param {*} value - Property value
    */
   onPropertyChange: PropTypes.func,
-  borderRadius: PropTypes.string,
+  radius: PropTypes.string,
 };
 
 export default ReactMPV;

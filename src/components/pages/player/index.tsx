@@ -63,7 +63,7 @@ const Player: React.FC = () => {
         onReady={handleMPVReady}
         onPropertyChange={handlePropertyChange}
         onMouseDown={togglePause}
-        borderRadius={page === 'player' ? '0px' : '15px'}
+        radius={page === 'player' ? '0px' : '15px'}
       />
     </div>
   );
