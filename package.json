@@ -6,7 +6,7 @@
     "dev": "cross-env NODE_ENV=development webpack --mode=development",
     "build": "cross-env NODE_ENV=production webpack --mode=production",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
-    "electron-dev": "concurrently \" yarn start\" \"wait-on http://localhost:3020/ && electron src/electron.js\"",
+    "electron-dev": "concurrently \" tsc ./src/electron.ts\" \" yarn start\" \"wait-on http://localhost:3020/ && electron src/electron.js\"",
     "dist": "electron-builder --win -c.extraMetadata.main=dist/electron.js"
   },
   "author": "Dartandr <avv092@gmail.com>",

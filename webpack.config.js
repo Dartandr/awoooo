@@ -21,6 +21,22 @@ const optimization = () => {
   return config;
 };
 
+const copy = () => {
+  const patterns = [
+    {
+      from: path.resolve(__dirname, 'src/mpv'),
+      to: path.resolve(__dirname, 'dist/mpv'),
+    },
+  ];
+  if (!devMode) {
+    patterns.push({
+      from: path.resolve(__dirname, 'src/electron.js'),
+      to: path.resolve(__dirname, 'dist'),
+    });
+  }
+  return patterns;
+};
+
 const plugins = [
   new HtmlWebpackPlugin({
     template: './index.html',
@@ -33,16 +49,7 @@ const plugins = [
     filename: '[name].[contenthash].css',
   }),
   new CopyWebpackPlugin({
-    patterns: [
-      {
-        from: path.resolve(__dirname, 'src/mpv'),
-        to: path.resolve(__dirname, 'dist/mpv'),
-      },
-      {
-        from: path.resolve(__dirname, 'src/electron.js'),
-        to: path.resolve(__dirname, 'dist'),
-      },
-    ],
+    patterns: copy(),
   }),
 ];
 
@@ -81,7 +88,7 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: devMode ? '/': './',
+    publicPath: devMode ? '/' : './',
   },
   resolve: {
     extensions: ['.js', '.ts', '.svg', '.jsx', '.tsx'],
@@ -129,10 +136,10 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use:{
+        use: {
           loader: 'babel-loader',
           options: babelOptions('tsx'),
-        } 
+        },
       },
       {
         test: /\.jsx$/,

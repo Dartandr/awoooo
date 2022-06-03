@@ -1,3 +1,4 @@
+import electronTypes from 'electron'
 const electron = require('electron');
 const app = electron.app;
 const IpcMain = electron.ipcMain;
@@ -10,13 +11,13 @@ let pluginPath = path.join(__dirname, 'mpv/mpvjs.node;application/x-mpvjs').spli
 if (!isDev) {
   pluginPath = pluginPath.replace('app.asar', 'app.asar.unpacked')
 }
-let mainWindow;
+let mainWindow:electronTypes.BrowserWindow | null
 
 app.commandLine.appendSwitch("no-sandbox");
 app.commandLine.appendSwitch("ignore-gpu-blacklist");
 app.commandLine.appendSwitch("register-pepper-plugins", pluginPath);
 
-function createWindow() {
+const createWindow = ():void => {
   mainWindow = new BrowserWindow({
     width: 980,
     height: 600,
@@ -26,10 +27,8 @@ function createWindow() {
     transparent: false,
     webPreferences: {
       webSecurity: false,
-      enableRemoteModule: true,
       nodeIntegration: true,
       plugins: true,
-      nativeWindowOpen: true,
       contextIsolation: false,
     },
     backgroundColor: '#151E27',
@@ -45,7 +44,7 @@ function createWindow() {
   if (isDev) {
     mainWindow.webContents.openDevTools();
   }
-  mainWindow.on('closed', () => (mainWindow = null));
+  mainWindow.on('closed', ():void => (mainWindow = null));
 }
 const { protocol } = require('electron');
 
