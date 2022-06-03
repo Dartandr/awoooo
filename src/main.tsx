@@ -10,7 +10,8 @@ import Animes from './components/pages/animes';
 import Anime from './components/pages/anime';
 import Profile from './components/pages/profile';
 import List from './components/pages/list';
-import Player from './components/pages/player';
+import Library from './components/pages/library';
+import Friends from './components/pages/friends';
 
 const Main: React.FC = () => {
   return (
@@ -46,8 +47,8 @@ const Main: React.FC = () => {
               <Route path="anime/:animeId" element={<Anime />} />
               <Route path="profile" element={<Profile />} />
               <Route path="list" element={<List />} />
-              <Route path="player" element={<Player />} />
-              <Route path="friends" element={<div>friends</div>} />
+              <Route path="player" element={<Library />} />
+              <Route path="friends" element={<Friends />} />
             </Route>
           </Routes>
         </div>

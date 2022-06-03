@@ -1,8 +1,10 @@
-import { Models } from '@rematch/core'
-import { count } from './count'
+import { Models } from '@rematch/core';
+import { player } from './player';
+import { navigation } from './navigation';
 
 export interface RootModel extends Models<RootModel> {
-	count: typeof count
+  player: typeof player;
+	navigation: typeof navigation;
 }
 
-export const models: RootModel = { count }
+export const models: RootModel = { player, navigation };

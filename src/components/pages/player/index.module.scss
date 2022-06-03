@@ -1,0 +1,8 @@
+.playerWrapper {
+  position: absolute;
+  left: 200px;
+  width: calc(100vw - 200px);
+  height: 100%;
+  visibility: hidden;
+  transition: 300ms ease;
+}

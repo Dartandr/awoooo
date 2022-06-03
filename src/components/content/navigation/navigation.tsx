@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from '@/store';
 import style from './navigation.module.scss';
 import { NavLink } from 'react-router-dom';
 import settingsIcon from '@/assets/icons/icon-settings.svg';
@@ -9,12 +11,19 @@ import listIcon from '@/assets/icons/icon-list.svg';
 import playerIcon from '@/assets/icons/icon-player.svg';
 
 const Navigation: React.FC = () => {
+  const navDispatcher = useDispatch<Dispatch>().navigation;
+  const onChangePage = (page: string) => {
+    navDispatcher.setPage(page);
+  };
   return (
     <div className={style.nav}>
       <div className={style.navitem}>
         <NavLink
           to={'/anime'}
           className={({ isActive }) => (isActive ? style.active : '')}
+          onClick={() => {
+            onChangePage('anime');
+          }}
         >
           <div className={style.item}>
             <img src={homeIcon} alt="home" /> Anime
@@ -26,6 +35,9 @@ const Navigation: React.FC = () => {
         <NavLink
           to={'/profile'}
           className={({ isActive }) => (isActive ? style.active : '')}
+          onClick={() => {
+            onChangePage('profile');
+          }}
         >
           <div className={style.item}>
             <img src={profileIcon} alt="profile" /> Profile
@@ -37,6 +49,9 @@ const Navigation: React.FC = () => {
         <NavLink
           to={'/list'}
           className={({ isActive }) => (isActive ? style.active : '')}
+          onClick={() => {
+            onChangePage('list');
+          }}
         >
           <div className={style.item}>
             <img src={listIcon} alt="list" /> List
@@ -48,6 +63,9 @@ const Navigation: React.FC = () => {
         <NavLink
           to={'/player'}
           className={({ isActive }) => (isActive ? style.active : '')}
+          onClick={() => {
+            onChangePage('player');
+          }}
         >
           <div className={style.item}>
             <img src={playerIcon} alt="list" />
@@ -57,7 +75,14 @@ const Navigation: React.FC = () => {
       </div>
       <div className={style.friends}>
         <div className={style.navitem}>
-          <NavLink to={'/friends'}>Friends</NavLink>
+          <NavLink
+            to={'/friends'}
+            onClick={() => {
+              onChangePage('friends');
+            }}
+          >
+            Friends
+          </NavLink>
         </div>
       </div>
 
