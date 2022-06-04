@@ -1,23 +1,22 @@
-import electronTypes from 'electron'
-const electron = require('electron');
-const app = electron.app;
-const IpcMain = electron.ipcMain;
-const BrowserWindow = electron.BrowserWindow;
+import { BrowserWindow, ipcMain, app } from 'electron';
 
 const path = require('path');
 const isDev = require('electron-is-dev');
 
-let pluginPath = path.join(__dirname, 'mpv/mpvjs.node;application/x-mpvjs').split('\\').join('/')
+let pluginPath = path
+  .join(__dirname, 'mpv/mpvjs.node;application/x-mpvjs')
+  .split('\\')
+  .join('/');
 if (!isDev) {
-  pluginPath = pluginPath.replace('app.asar', 'app.asar.unpacked')
+  pluginPath = pluginPath.replace('app.asar', 'app.asar.unpacked');
 }
-let mainWindow:electronTypes.BrowserWindow | null
+let mainWindow: BrowserWindow | null = null;
 
-app.commandLine.appendSwitch("no-sandbox");
-app.commandLine.appendSwitch("ignore-gpu-blacklist");
-app.commandLine.appendSwitch("register-pepper-plugins", pluginPath);
+app.commandLine.appendSwitch('no-sandbox');
+app.commandLine.appendSwitch('ignore-gpu-blacklist');
+app.commandLine.appendSwitch('register-pepper-plugins', pluginPath);
 
-const createWindow = ():void => {
+const createWindow = (): void => {
   mainWindow = new BrowserWindow({
     width: 980,
     height: 600,
@@ -44,8 +43,8 @@ const createWindow = ():void => {
   if (isDev) {
     mainWindow.webContents.openDevTools();
   }
-  mainWindow.on('closed', ():void => (mainWindow = null));
-}
+  mainWindow.on('closed', (): void => (mainWindow = null));
+};
 const { protocol } = require('electron');
 
 app.whenReady().then(() => {
@@ -69,7 +68,7 @@ app.on('activate', () => {
   }
 });
 
-IpcMain.on('max', () => {
+ipcMain.on('max', () => {
   if (mainWindow.isMaximized()) {
     mainWindow.unmaximize();
   } else {
@@ -77,10 +76,10 @@ IpcMain.on('max', () => {
   }
 });
 
-IpcMain.on('min', () => {
+ipcMain.on('min', () => {
   mainWindow.minimize();
 });
 
-IpcMain.on('close', () => {
+ipcMain.on('close', () => {
   mainWindow.close();
 });

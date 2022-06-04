@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode=development",
-    "build": "concurrently  --success last \"tsc src/electron.ts \" \" wait-on src/electron.js && cross-env NODE_ENV=production webpack --mode=production\"",
+    "build": "concurrently  --success last \"tsc --skipLibCheck src/electron.ts \" \" wait-on src/electron.js && cross-env NODE_ENV=production webpack --mode=production\"",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
-    "electron-dev": "concurrently \" tsc src/electron.ts \" \"wait-on src/electron.js && yarn start\" \"wait-on http://localhost:3020/ && electron src/electron.js\"",
+    "electron-dev": "concurrently \" tsc --skipLibCheck src/electron.ts \" \"wait-on src/electron.js && yarn start\" \"wait-on http://localhost:3020/ && electron src/electron.js\"",
     "dist": "electron-builder -c.extraMetadata.main=dist/electron.js"
   },
   "author": "Dartandr <avv092@gmail.com>",
@@ -35,7 +35,6 @@
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.17.12",
-    "@types/electron": "^1.6.10",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.5",
     "@types/react-redux": "^7.1.24",
