@@ -56,7 +56,7 @@ const handleMousemove = (element: MouseEvent): void => {
       dragElement.style.top = '0';
     } else if (
       objectPos.y + (element.clientY - startPos.y) + dragElement.offsetHeight >
-      field.offsetHeight
+      field.offsetHeight+20
     ) {
       dragElement.style.top = getPosition(
         field.offsetHeight - dragElement.offsetHeight,
