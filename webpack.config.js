@@ -33,6 +33,10 @@ const copy = () => {
       from: path.resolve(__dirname, 'src/electron.js'),
       to: path.resolve(__dirname, 'dist'),
     });
+    patterns.push({
+      from: path.resolve(__dirname, 'src/icon.png'),
+      to: path.resolve(__dirname, 'dist'),
+    })
   }
   return patterns;
 };

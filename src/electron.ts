@@ -32,7 +32,7 @@ const createWindow = (): void => {
     },
     backgroundColor: '#151E27',
     title: 'Awoooo',
-    //icon: path.join(__dirname, "./icon.png"),
+    icon: path.join(__dirname, "./icon.png"),
   });
 
   mainWindow.loadURL(

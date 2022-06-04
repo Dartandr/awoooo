@@ -20,6 +20,15 @@
       "dist/**/*",
       "node_modules/**/*"
     ],
+    "win": {
+      "icon": "./src/icon.png"
+    },
+    "mac": {
+      "icon": "./src/icon.png"
+    },
+    "linux": {
+      "icon": "./src/icon.png"
+    },
     "asar": true,
     "asarUnpack": [
       "dist/mpv/*"
