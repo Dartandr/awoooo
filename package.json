@@ -83,9 +83,13 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@rematch/core": "^2.2.0",
     "@tippyjs/react": "^4.2.6",
+    "any-shell-escape": "^0.1.1",
     "electron-is-dev": "^2.0.0",
+    "fs": "^0.0.1-security",
+    "node-fetch": "2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.2",
