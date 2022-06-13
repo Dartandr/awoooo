@@ -9,6 +9,7 @@
   position: absolute;
   visibility: hidden;
   transition: all 300ms;
+  outline: none;
 }
 
 .hideCursor {
@@ -30,7 +31,9 @@
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0.5) 100%
   );
+  transition: opacity ease-in-out 200ms, margin ease-in-out 200ms;
   .seeker {
+      cursor: pointer;
       position: absolute;
       bottom: 37px;
       height: 3px;
@@ -105,12 +108,12 @@
   font-size: 12px;
   font-family: "Open Sans", Arial, sans-serif;
   font-weight: 600;
-  margin-top: 3px;
-  margin-right: 9px;
+  margin-top: 7px;
+  margin-right: 13px;
 }
 .buttons {
   position: absolute;
-  bottom: 5px;
+  bottom: 3px;
   display: flex;
   left: 10px;
 }
@@ -132,7 +135,7 @@
 
 .buttonsRight {
   position: absolute;
-  bottom: 5px;
+  bottom: 3px;
   display: flex;
   right: 10px;
 }

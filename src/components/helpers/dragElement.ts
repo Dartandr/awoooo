@@ -1,3 +1,4 @@
+import { store } from '@/store';
 let dragElement: HTMLElement;
 
 let drag = false;
@@ -16,6 +17,11 @@ const objectPos: IObjectPos = {
   y: 0,
 };
 
+const finalPos: IObjectPos = {
+  x: 0,
+  y: 0,
+};
+
 const handleMousedown = (element: MouseEvent): void => {
   const pos = dragElement.getBoundingClientRect();
   drag = true;
@@ -28,7 +34,8 @@ const handleMousedown = (element: MouseEvent): void => {
 
 const handleMouseup = (): void => {
   drag = false;
-  dragElement.style.transition = '300ms ease';
+  store.dispatch.player.changePosition(finalPos);
+  dragElement.style.transition = 'all 300ms ease-in-out';
 };
 
 const getPosition = (value: number): string => `${value}px`;
@@ -38,33 +45,31 @@ const handleMousemove = (element: MouseEvent): void => {
   const topField: number = field.getBoundingClientRect().top;
   if (drag === true && dragElement !== null) {
     if (objectPos.x + (element.clientX - startPos.x) < 0) {
-      dragElement.style.left = '0';
+      finalPos.x = 0;
+      dragElement.style.left = getPosition(finalPos.x);
     } else if (
       objectPos.x + (element.clientX - startPos.x) + dragElement.offsetWidth >
       field.offsetWidth
     ) {
-      dragElement.style.left = getPosition(
-        field.offsetWidth - dragElement.offsetWidth,
-      );
+      finalPos.x = field.offsetWidth - dragElement.offsetWidth;
+      dragElement.style.left = getPosition(finalPos.x);
     } else {
-      dragElement.style.left = getPosition(
-        objectPos.x + (element.clientX - startPos.x),
-      );
+      finalPos.x = objectPos.x + (element.clientX - startPos.x);
+      dragElement.style.left = getPosition(finalPos.x);
     }
 
     if (objectPos.y + (element.clientY - startPos.y - topField) < 0) {
-      dragElement.style.top = '0';
+      finalPos.y = 0;
+      dragElement.style.top = getPosition(finalPos.y);
     } else if (
       objectPos.y + (element.clientY - startPos.y) + dragElement.offsetHeight >
-      field.offsetHeight+20
+      field.offsetHeight + 20
     ) {
-      dragElement.style.top = getPosition(
-        field.offsetHeight - dragElement.offsetHeight,
-      );
+      finalPos.y = field.offsetHeight - dragElement.offsetHeight;
+      dragElement.style.top = getPosition(finalPos.y);
     } else {
-      dragElement.style.top = getPosition(
-        objectPos.y + (element.clientY - startPos.y - topField),
-      );
+      finalPos.y = objectPos.y + (element.clientY - startPos.y - topField);
+      dragElement.style.top = getPosition(finalPos.y);
     }
   }
 };
