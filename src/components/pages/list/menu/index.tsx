@@ -1,8 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './index.module.scss';
 import GenresComponent from './genres';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch, RootState } from '@/store';
 
 const ListMenu: React.FC = () => {
+  const list = useSelector((state: RootState) => state.list);
+  const dispatchList = useDispatch<Dispatch>().list;
+
+  useEffect(() => {
+    console.log(list.filters);
+  }, [list.filters]);
+
+  useEffect(() => {
+    const checkboxes = document.querySelectorAll(
+      'input[data-where="list"]',
+    ) as NodeListOf<HTMLInputElement>;
+    const onChange = (e: Event) => {
+      const element = e.target as HTMLInputElement;
+      const elementObject = {
+        id: element.id,
+        add: element.checked,
+        checkBoxType: element.dataset.type
+      };
+      dispatchList.changeFilter(elementObject);
+    };
+    const isActive = (id: string): boolean => {
+      return (
+        list.filters.status.includes(id) ||
+        list.filters.types.includes(id) ||
+        list.filters.rating.includes(id) ||
+        list.filters.genres.includes(id)
+      );
+    };
+    for (let i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = isActive(checkboxes[i].id);
+      checkboxes[i].addEventListener('change', onChange);
+    }
+    return () => {
+      for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].removeEventListener('change', onChange);
+      }
+    };
+  }, []);
   return (
     <div className={style.wrapper}>
       <div className={style.sorting}>
@@ -14,6 +54,8 @@ const ListMenu: React.FC = () => {
               id="Completed"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="status"
             />
             <label htmlFor="Completed">Completed</label>
           </div>
@@ -23,6 +65,8 @@ const ListMenu: React.FC = () => {
               id="PTW"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="status"
             />
             <label htmlFor="PTW">Planned to Watch</label>
           </div>
@@ -32,6 +76,8 @@ const ListMenu: React.FC = () => {
               id="Watching"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="status"
             />
             <label htmlFor="Watching">Watching</label>
           </div>
@@ -41,6 +87,8 @@ const ListMenu: React.FC = () => {
               id="OnHold"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="status"
             />
             <label htmlFor="OnHold">On hold</label>
           </div>
@@ -50,6 +98,8 @@ const ListMenu: React.FC = () => {
               id="Dropped"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="status"
             />
             <label htmlFor="Dropped">Dropped</label>
           </div>
@@ -63,6 +113,8 @@ const ListMenu: React.FC = () => {
               id="TV"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="type"
             />
             <label htmlFor="TV">TV Series</label>
           </div>
@@ -72,6 +124,8 @@ const ListMenu: React.FC = () => {
               id="Movie"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="type"
             />
             <label htmlFor="Movie">Movie</label>
           </div>
@@ -81,6 +135,8 @@ const ListMenu: React.FC = () => {
               id="ONA"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="type"
             />
             <label htmlFor="ONA">ONA</label>
           </div>
@@ -90,6 +146,8 @@ const ListMenu: React.FC = () => {
               id="OVA"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="type"
             />
             <label htmlFor="OVA">OVA</label>
           </div>
@@ -99,6 +157,8 @@ const ListMenu: React.FC = () => {
               id="Special"
               name="type"
               type="checkbox"
+              data-where="list"
+              data-type="type"
             />
             <label htmlFor="Special">Specials</label>
           </div>
@@ -112,6 +172,8 @@ const ListMenu: React.FC = () => {
               id="0"
               name="rating"
               type="checkbox"
+              data-where="list"
+              data-type="rating"
             />
             <label htmlFor="0">G</label>
           </div>
@@ -121,6 +183,8 @@ const ListMenu: React.FC = () => {
               id="1"
               name="rating"
               type="checkbox"
+              data-where="list"
+              data-type="rating"
             />
             <label htmlFor="1">PG</label>
           </div>
@@ -130,6 +194,8 @@ const ListMenu: React.FC = () => {
               id="2"
               name="rating"
               type="checkbox"
+              data-where="list"
+              data-type="rating"
             />
             <label htmlFor="2">PG-13</label>
           </div>
@@ -139,6 +205,8 @@ const ListMenu: React.FC = () => {
               id="3"
               name="rating"
               type="checkbox"
+              data-where="list"
+              data-type="rating"
             />
             <label htmlFor="3">R</label>
           </div>
@@ -148,6 +216,8 @@ const ListMenu: React.FC = () => {
               id="4"
               name="rating"
               type="checkbox"
+              data-where="list"
+              data-type="rating"
             />
             <label htmlFor="4">R+</label>
           </div>
@@ -157,6 +227,8 @@ const ListMenu: React.FC = () => {
               id="5"
               name="rating"
               type="checkbox"
+              data-where="list"
+              data-type="rating"
             />
             <label htmlFor="5">Rx</label>
           </div>

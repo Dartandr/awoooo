@@ -54,6 +54,8 @@ const Genres: React.FC = () => {
         id={genre}
         name="genre"
         type="checkbox"
+        data-where="list"
+        data-type="genres"
       />
       <label htmlFor={genre}>{genre}</label>
     </div>
