@@ -55,6 +55,7 @@ const createWindow = (): void => {
         minWidth: 561,
         minHeight: 350,
         backgroundColor: '#151E27',
+        title: 'Chat',
       },
     };
   });
