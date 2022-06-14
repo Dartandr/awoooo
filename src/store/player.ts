@@ -6,15 +6,23 @@ interface IPlayerPos {
   y: number;
 }
 
-export const player = createModel<RootModel>()({
-  state: {
+interface IState {
+  showPlayer: boolean,
+  selectedFile: string,
+  position: IPlayerPos
+}
+
+const initialState: IState = {
     showPlayer: false,
     selectedFile: '',
     position: {
       x: 20,
       y: 20,
-    },
-  },
+    }
+}
+
+export const player = createModel<RootModel>()({
+  state: initialState,
   reducers: {
     showPlayer: (state, payload: boolean) => ({
       ...state,
