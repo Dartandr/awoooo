@@ -21,13 +21,17 @@ let path: string | null = null;
   path = result
 })();
 
-const ChatWindow: React.FC = () => {
+interface ChatProps{
+  onCloseChat: () => void;
+}
+
+const ChatWindow: React.FC<ChatProps> = ({onCloseChat}) => {
   
   const chatDocument = window.open('');
   useEffect(() => {
     copyStyles(document, chatDocument.document);
   }, []);
-  return ReactDOM.createPortal(<Chat path={path} body={chatDocument.document}/>, chatDocument.document.body);
+  return ReactDOM.createPortal(<Chat closeChat={onCloseChat} path={path} body={chatDocument.document}/>, chatDocument.document.body);
 };
 
 const Navigation: React.FC = () => {
@@ -36,9 +40,12 @@ const Navigation: React.FC = () => {
   const onChangePage = (page: string) => {
     navDispatcher.setPage(page);
   };
+  const onCloseChat = (): void =>{
+    setShowChat(false)
+  }
   return (
     <div className={style.nav}>
-      {showChat && <ChatWindow />}
+      {showChat && <ChatWindow onCloseChat={onCloseChat} />}
       <div className={style.navitem}>
         <NavLink
           to={'/anime'}

@@ -64,6 +64,7 @@ interface IDialog {
 interface IProps {
   path: string | null;
   body: Document;
+  closeChat: () => void;
 }
 
 const Chat: React.FC<IProps> = (props: IProps) => {
@@ -207,6 +208,7 @@ const Chat: React.FC<IProps> = (props: IProps) => {
             className={style.buttonClose}
             onClick={() => {
               ipc.send('close');
+              props.closeChat();
             }}
           >
             <img src={iconsPath(IconCross)} alt="close" />
