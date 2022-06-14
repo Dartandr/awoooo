@@ -1,0 +1,351 @@
+@import "../../../styles/colors";
+
+.wrapper {
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  Font-family: 'OpenSans';
+}
+
+.header {
+  height: 21px;
+  width: 100vw;
+  position: relative;
+  background-color: $darkblue;
+  -webkit-app-region: drag;
+  user-select: none;
+}
+
+.header img {
+  height: 9px;
+  width: 9px;
+  padding: 0 8px 0 8px;
+  margin: 5px 0 0 auto;
+}
+
+.headerLogo {
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  font-family: 'ChelseaMarket';
+  font-size: 15px;
+  color: #a3a3a3;
+  -webkit-app-region: drag;
+}
+
+.buttons {
+  display: flex;
+  position: absolute;
+  right: 0;
+  -webkit-app-region: no-drag;
+}
+
+.button {
+  width: 25px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.buttonClose {
+  width: 25px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.buttonClose:hover {
+  background-color: red;
+}
+
+.content {
+  display: grid;
+  grid-template-areas: "n c";
+  grid-template-columns: 48px 1fr;
+}
+
+.navigation {
+  width: 48px;
+  height: calc(100vh - 21px);
+  background-color: $darkblue;
+  position: relative;
+}
+
+.addChat {
+  position: absolute;
+  bottom: 20px;
+  left: 12px;
+  cursor: pointer;
+}
+
+.name {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: $fontBlue;
+}
+
+.chats {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.chatSelect {
+  cursor: pointer;
+  margin-bottom: 10px;
+
+  img {
+    height: 28px;
+    width: 28px;
+    border-radius: 20px;
+    transition: 300ms;
+    object-fit: cover;
+  }
+}
+
+.chatSelect:hover {
+  img {
+    border-radius: 5px !important;
+  }
+}
+
+.chatSelected {
+  img {
+    border-radius: 5px !important;
+  }
+}
+
+.chatActions {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  height: 20px;
+  width: 32px;
+
+  img {
+    margin-left: 1px;
+    margin-top: 7px;
+  }
+}
+
+.main {
+  position: relative;
+  width: calc(100vw - 48px);
+  height: calc(100vh - 21px);
+}
+
+.spacerLine {
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 4px;
+  border-radius: 100px;
+  background-color: $secondaryBlue;
+}
+
+.messagesArea {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 74px);
+}
+
+.plug {
+  height: calc(100vh - 74px);
+  width: 100%;
+  position: relative;
+
+  .content {
+    img{
+      position: relative;
+    }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, -50%);
+    width: 276px;
+    .text{
+      text-align: center;
+      font-size: 18px;
+      font-family: 'OpenSansSemiBold';
+      color: $fontBlue;
+      pointer-events: none;
+      margin-top: 160px;
+    }
+  }
+}
+
+.messages {
+  margin-top: 10px;
+  height: 100%;
+  width: calc(100% - 5px);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.message {
+  color: $fontBlue;
+  font-size: 14px;
+  width: max-content;
+  padding: 5px;
+  font-weight: 600;
+  position: relative;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.25);
+  z-index: -2;
+}
+
+.messageFromMe {
+  border-radius: 8px 8px 0 8px;
+  margin: 5px 20px 5px auto;
+  background-color: $chatMe;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: -2px;
+    right: -7px;
+    height: 20px;
+    border-right: 20px solid $chatMe;
+    border-bottom-left-radius: 16px 14px;
+    -webkit-transform: translate(0, -2px);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: -2px;
+    right: -40px;
+    width: 10px;
+    height: 20px;
+    background: $mainBlue;
+    border-bottom-left-radius: 10px;
+    -webkit-transform: translate(-30px, -2px);
+  }
+}
+
+.messageFromAnother {
+  border-radius: 8px 8px 8px 0;
+  margin: 5px auto 5px 20px;
+  background-color: $chatAnother;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: -2px;
+    left: -7px;
+    height: 20px;
+    border-left: 20px solid $chatAnother;
+    border-bottom-right-radius: 16px 14px;
+    -webkit-transform: translate(0, -2px);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: -2px;
+    left: 20px;
+    width: 10px;
+    height: 20px;
+    background: $mainBlue;
+    border-bottom-right-radius: 10px;
+    -webkit-transform: translate(-30px, -2px);
+  }
+}
+
+.plashka {
+  display: flex;
+  width: 241px;
+  height: 87px;
+  border-radius: 8px;
+  color: $fotnblueDarker;
+  background-color: #212932;
+}
+
+.plashkaPoster {
+  img {
+    height: 87px;
+    width: 55px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
+
+.plashkaContent {
+  margin-left: 5px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.plashkaTitle {
+  color: $fontBlue;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.plashkaLine {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plashkaMe {
+  margin: 5px 10px 5px auto;
+}
+
+.plashkaAnother {
+  margin: 5px auto 5px 10px;
+}
+
+.input {
+  position: relative;
+
+  textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 32px;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    background: $secondaryBlue;
+    color: #d8d8d8;
+    outline: none;
+    resize: none;
+    padding: 7px 42px 0px 10px;
+    font-size: 12px;
+    font-family: 'OpenSansSemiBold';
+    overflow: hidden;
+    white-space: normal;
+    overflow-x: hidden;
+    cursor: text;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  ::placeholder {
+    color: $fotnblueDarker;
+    font-size: 14px;
+  }
+}
+
+.sendButton {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 42px;
+  height: 32px;
+  cursor: pointer;
+
+  img {
+    margin-top: 7px;
+    margin-left: 11px;
+  }
+}

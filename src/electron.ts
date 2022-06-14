@@ -32,7 +32,7 @@ const createWindow = (): void => {
     },
     backgroundColor: '#151E27',
     title: 'Awoooo',
-    icon: path.join(__dirname, "./icon.png"),
+    icon: path.join(__dirname, './icon.png'),
   });
 
   mainWindow.loadURL(
@@ -44,6 +44,21 @@ const createWindow = (): void => {
     mainWindow.webContents.openDevTools();
   }
   mainWindow.on('closed', (): void => (mainWindow = null));
+  mainWindow.webContents.setWindowOpenHandler(() => {
+    return {
+      action: 'allow',
+      overrideBrowserWindowOptions: {
+        frame: false,
+        transparent: false,
+        width: 561,
+        height: 350,
+        minWidth: 561,
+        minHeight: 350,
+        backgroundColor: '#151E27',
+      },
+    };
+  });
+
 };
 const { protocol } = require('electron');
 
@@ -69,17 +84,23 @@ app.on('activate', () => {
 });
 
 ipcMain.on('max', () => {
-  if (mainWindow.isMaximized()) {
-    mainWindow.unmaximize();
+  if (BrowserWindow.getFocusedWindow().isMaximized()) {
+    BrowserWindow.getFocusedWindow().unmaximize();
   } else {
-    mainWindow.maximize();
+    BrowserWindow.getFocusedWindow().maximize();
   }
 });
 
 ipcMain.on('min', () => {
-  mainWindow.minimize();
+  BrowserWindow.getFocusedWindow().minimize();
 });
 
 ipcMain.on('close', () => {
-  mainWindow.close();
+  BrowserWindow.getFocusedWindow().close();
+});
+
+ipcMain.handle('path', async () => {
+  // do stuff
+  const path = await __dirname;
+  return path;
 });

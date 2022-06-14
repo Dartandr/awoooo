@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from '@/store';
 import style from './navigation.module.scss';
 import { NavLink } from 'react-router-dom';
+const ipc = window.require('electron').ipcRenderer;
+import Chat from '../chat';
+import copyStyles from '@/components/helpers/copyStyles';
 import settingsIcon from '@/assets/icons/icon-settings.svg';
 import messageIcon from '@/assets/icons/icon-message.svg';
 import homeIcon from '@/assets/icons/icon-home.svg';
@@ -10,13 +14,31 @@ import profileIcon from '@/assets/icons/icon-profile.svg';
 import listIcon from '@/assets/icons/icon-list.svg';
 import playerIcon from '@/assets/icons/icon-player.svg';
 
+
+let path: string | null = null;
+(async () => {
+  const result = await ipc.invoke('path');
+  path = result
+})();
+
+const ChatWindow: React.FC = () => {
+  
+  const chatDocument = window.open('');
+  useEffect(() => {
+    copyStyles(document, chatDocument.document);
+  }, []);
+  return ReactDOM.createPortal(<Chat path={path} body={chatDocument.document}/>, chatDocument.document.body);
+};
+
 const Navigation: React.FC = () => {
+  const [showChat, setShowChat] = useState(false);
   const navDispatcher = useDispatch<Dispatch>().navigation;
   const onChangePage = (page: string) => {
     navDispatcher.setPage(page);
   };
   return (
     <div className={style.nav}>
+      {showChat && <ChatWindow />}
       <div className={style.navitem}>
         <NavLink
           to={'/anime'}
@@ -94,7 +116,7 @@ const Navigation: React.FC = () => {
         <img
           src={messageIcon}
           onClick={() => {
-            alert('test');
+            setShowChat(true);
           }}
         />
       </div>
