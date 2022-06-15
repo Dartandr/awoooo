@@ -1,21 +1,30 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Dispatch } from '@/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
+import { Dispatch, RootState } from '@/store';
 import style from './index.module.scss';
-
+import './settingsAnimation.scss';
 const Settings: React.FC = () => {
   const navDispatcher = useDispatch<Dispatch>().navigation;
+  const settings = useSelector((state: RootState) => state.navigation.settings);
 
   return (
-    <div className={style.settings}>
-      <div
-        onClick={() => {
-          navDispatcher.setSettings(false);
-        }}
-      >
-        settings here
+    <CSSTransition
+      in={settings}
+      timeout={250}
+      unmountOnExit
+      classNames="settings"
+    >
+      <div className={style.settings}>
+        <div
+          onClick={() => {
+            navDispatcher.setSettings(false);
+          }}
+        >
+          settings here
+        </div>
       </div>
-    </div>
+    </CSSTransition>
   );
 };
 
