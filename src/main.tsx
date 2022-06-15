@@ -1,5 +1,7 @@
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 import IconMaximize from '@/assets/icons/icon-maximize.svg';
 import IconMinimize from '@/assets/icons/icon-minimize.svg';
 import IconCross from '@/assets/icons/icon-cross.svg';
@@ -14,6 +16,8 @@ import Library from './components/pages/library';
 import Friends from './components/pages/friends';
 
 const Main: React.FC = () => {
+
+  const UID = useSelector((state: RootState) => state.user.uid);
   return (
     <div className="wrapper">
       <header>
@@ -42,7 +46,7 @@ const Main: React.FC = () => {
         <div className="App">
           <Routes>
             <Route path="login" element={<LoginPage />} />
-            <Route path="/" element={<Content />}>
+            <Route path="/" element={UID ? <Content /> : <Navigate replace to="/login"/>}>
               <Route path="anime" element={<Animes />} />
               <Route path="anime/:animeId" element={<Anime />} />
               <Route path="profile" element={<Profile />} />

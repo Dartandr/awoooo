@@ -1,9 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {  useDispatch } from 'react-redux';
+import { Dispatch } from '@/store';
 import style from './index.module.scss';
 import loginIcon from '@/assets/icons/icon-login.svg';
 
 const LoginPage: React.FC = () => {
+  const userDispatch = useDispatch<Dispatch>().user;
+  const navigate = useNavigate()
+  const onLogin = ():void => {
+    userDispatch.setUID(1);
+    navigate('/profile')
+  } 
   return (
     <div className={style.wrapper}>
       <div className={style.login}>
@@ -21,9 +29,7 @@ const LoginPage: React.FC = () => {
             <div className={style.link}>Forgot your password?</div>
             <div className={style.link}>{`Don't have an account?`}</div>
           </div>
-          <NavLink to="/profile">
-            <div className={style.button}>Let me in!</div>
-          </NavLink>
+          <div className={style.button} onClick={onLogin}>Let me in!</div>
         </div>
       </div>
     </div>
