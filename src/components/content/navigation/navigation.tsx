@@ -25,13 +25,21 @@ interface ChatProps{
   onCloseChat: () => void;
 }
 
-const ChatWindow: React.FC<ChatProps> = ({onCloseChat}) => {
-  
+const ChatWindow: React.FC<ChatProps> = ({ onCloseChat }) => {
   const chatDocument = window.open('');
+  const timer = setInterval(function () {
+    if (chatDocument.closed) {
+      clearInterval(timer);
+      onCloseChat()
+    }
+  }, 200);
   useEffect(() => {
     copyStyles(document, chatDocument.document);
   }, []);
-  return ReactDOM.createPortal(<Chat closeChat={onCloseChat} path={path} body={chatDocument.document}/>, chatDocument.document.body);
+  return ReactDOM.createPortal(
+    <Chat closeChat={onCloseChat} path={path} body={chatDocument.document} />,
+    chatDocument.document.body,
+  );
 };
 
 const Navigation: React.FC = () => {
@@ -40,9 +48,9 @@ const Navigation: React.FC = () => {
   const onChangePage = (page: string) => {
     navDispatcher.setPage(page);
   };
-  const onCloseChat = (): void =>{
-    setShowChat(false)
-  }
+  const onCloseChat = (): void => {
+    setShowChat(false);
+  };
   return (
     <div className={style.nav}>
       {showChat && <ChatWindow onCloseChat={onCloseChat} />}
