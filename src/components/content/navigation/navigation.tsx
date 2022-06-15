@@ -14,26 +14,27 @@ import profileIcon from '@/assets/icons/icon-profile.svg';
 import listIcon from '@/assets/icons/icon-list.svg';
 import playerIcon from '@/assets/icons/icon-player.svg';
 
-
 let path: string | null = null;
 (async () => {
   const result = await ipc.invoke('path');
-  path = result
+  path = result;
 })();
 
-interface ChatProps{
+interface ChatProps {
   onCloseChat: () => void;
+  passWindow: (e: Window) => void;
 }
 
-const ChatWindow: React.FC<ChatProps> = ({ onCloseChat }) => {
+const ChatWindow: React.FC<ChatProps> = ({ onCloseChat, passWindow }) => {
   const chatDocument = window.open('');
   const timer = setInterval(function () {
     if (chatDocument.closed) {
       clearInterval(timer);
-      onCloseChat()
+      onCloseChat();
     }
   }, 200);
   useEffect(() => {
+    passWindow(chatDocument)
     copyStyles(document, chatDocument.document);
   }, []);
   return ReactDOM.createPortal(
@@ -51,9 +52,15 @@ const Navigation: React.FC = () => {
   const onCloseChat = (): void => {
     setShowChat(false);
   };
+  let chatWindow: null | Window = null;
+  const setChatWindow = (e: Window): void =>{
+    chatWindow = e
+  }
   return (
     <div className={style.nav}>
-      {showChat && <ChatWindow onCloseChat={onCloseChat} />}
+      {showChat && (
+        <ChatWindow passWindow={setChatWindow} onCloseChat={onCloseChat} />
+      )}
       <div className={style.navitem}>
         <NavLink
           to={'/anime'}
@@ -122,10 +129,12 @@ const Navigation: React.FC = () => {
           </NavLink>
         </div>
       </div>
-
-      <div className={style.Settings} onClick={()=>{
-        navDispatcher.setSettings(true);
-      }}>
+      <div
+        className={style.Settings}
+        onClick={() => {
+          navDispatcher.setSettings(true);
+        }}
+      >
         <img src={settingsIcon} alt="" />
       </div>
       <div className={style.messageNav}>
@@ -134,6 +143,9 @@ const Navigation: React.FC = () => {
           src={messageIcon}
           onClick={() => {
             setShowChat(true);
+            if (chatWindow) {
+              ipc.send('show');
+            }
           }}
         />
       </div>

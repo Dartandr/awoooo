@@ -48,6 +48,7 @@ const createWindow = (): void => {
     return {
       action: 'allow',
       overrideBrowserWindowOptions: {
+        formId: 6,
         frame: false,
         transparent: false,
         width: 561,
@@ -100,8 +101,12 @@ ipcMain.on('close', () => {
   BrowserWindow.getFocusedWindow().close();
 });
 
+ipcMain.on('show', () => {
+  BrowserWindow.getAllWindows()[0].show()
+});
+
+
 ipcMain.handle('path', async () => {
-  // do stuff
   const path = await __dirname;
   return path;
 });
