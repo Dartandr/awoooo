@@ -1,0 +1,42 @@
+@import '../../styles/colors';
+.settings-exit {
+  opacity: 1;
+}
+.settings-exit-active {
+  animation-duration: 270ms;
+  animation-name: foo;
+  animation-timing-function: ease;
+}
+
+.settings-enter {
+  opacity: 1;
+}
+.settings-enter-active{
+  animation-duration: 270ms;
+  animation-name: bar;
+  animation-timing-function: ease;
+}
+
+@keyframes foo {
+  from {
+    transform: scale(100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes bar {
+  from {
+    transform: scale(110%);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(100%);
+    opacity: 1;
+  }
+}

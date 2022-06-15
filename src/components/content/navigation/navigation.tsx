@@ -123,7 +123,9 @@ const Navigation: React.FC = () => {
         </div>
       </div>
 
-      <div className={style.Settings}>
+      <div className={style.Settings} onClick={()=>{
+        navDispatcher.setSettings(true);
+      }}>
         <img src={settingsIcon} alt="" />
       </div>
       <div className={style.messageNav}>

@@ -1,0 +1,12 @@
+@import '../../styles/colors';
+
+.settings {
+  z-index: 1;
+  position: absolute;
+  min-height: calc(100vh - 21px);
+  width: 100%;
+  background-color: $mainBlue;
+  font-family: 'OpenSans';
+  color: white;
+  padding: 20px;
+}
