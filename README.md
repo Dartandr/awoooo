@@ -1,5 +1,3 @@
-# awoooo
-
 ## Run project
 
 yarn and TS required:
