@@ -1,4 +1,5 @@
 import { store } from '@/store';
+import { changePosition } from '@/store/playerState';
 let dragElement: HTMLElement;
 
 let drag = false;
@@ -34,7 +35,7 @@ const handleMousedown = (element: MouseEvent): void => {
 
 const handleMouseup = (): void => {
   drag = false;
-  store.dispatch.player.changePosition(finalPos);
+  store.dispatch(changePosition({...finalPos}));
   dragElement.style.transition = 'all 300ms ease-in-out';
 };
 

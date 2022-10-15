@@ -69,7 +69,7 @@ const friendList = [
 
 const Friends: React.FC = () => {
     const progressBar = () => {
-        const progress = document.getElementsByClassName(style.scrollbar) as HTMLCollectionOf<HTMLElement>;
+        const progress = document.getElementsByClassName('scrollbar') as HTMLCollectionOf<HTMLElement>;
         const temp = document.getElementsByClassName(style.content) as HTMLCollectionOf<HTMLElement>;
         const scrollElement = temp[0];
         const scrollTop = scrollElement.scrollTop;
@@ -129,7 +129,7 @@ const Friends: React.FC = () => {
     };
         return (
             <div className={style.wrapper}>
-                <div className={style.scrollbar} />
+                <div className={'scrollbar'} />
                 <div className={style.header}>
                     <div className={style.userData}>
                         <div className={style.avatar}>

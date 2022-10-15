@@ -76,7 +76,7 @@ const Profile: React.FC = () => {
 
   const progressBar = (): void => {
     const progress = document.getElementsByClassName(
-      style.scrollbar,
+      'scrollbar',
     ) as HTMLCollectionOf<HTMLElement>;
     const scrollElement = document.getElementsByClassName(
       style.scrollableContent,
@@ -98,7 +98,7 @@ const Profile: React.FC = () => {
 
   return (
     <div className={style.wrapper}>
-      <div className={style.scrollbar} />
+      <div className="scrollbar" />
       <div className={style.content}>
         <div className={style.profileInfo}>
           <div className={style.avatar}>

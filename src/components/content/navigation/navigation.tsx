@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
-import { Dispatch } from '@/store';
+import { AppDispatch } from '@/store';
 import style from './navigation.module.scss';
 import { NavLink } from 'react-router-dom';
 const ipc = window.require('electron').ipcRenderer;
@@ -13,6 +13,7 @@ import homeIcon from '@/assets/icons/icon-home.svg';
 import profileIcon from '@/assets/icons/icon-profile.svg';
 import listIcon from '@/assets/icons/icon-list.svg';
 import playerIcon from '@/assets/icons/icon-player.svg';
+import { changePage, changeSettings } from '@/store/navigationState';
 
 let path: string | null = null;
 (async () => {
@@ -45,9 +46,9 @@ const ChatWindow: React.FC<ChatProps> = ({ onCloseChat, passWindow }) => {
 
 const Navigation: React.FC = () => {
   const [showChat, setShowChat] = useState(false);
-  const navDispatcher = useDispatch<Dispatch>().navigation;
+  const dispatch = useDispatch<AppDispatch>();
   const onChangePage = (page: string) => {
-    navDispatcher.setPage(page);
+    dispatch(changePage(page));
   };
   const onCloseChat = (): void => {
     setShowChat(false);
@@ -132,7 +133,7 @@ const Navigation: React.FC = () => {
       <div
         className={style.Settings}
         onClick={() => {
-          navDispatcher.setSettings(true);
+          dispatch(changeSettings(true));
         }}
       >
         <img src={settingsIcon} alt="" />

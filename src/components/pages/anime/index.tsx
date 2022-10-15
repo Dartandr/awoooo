@@ -56,7 +56,7 @@ const AnimePage: React.FC = () => {
 
   const progressBar = (): void => {
     const progress = document.getElementsByClassName(
-      style.scrollbar,
+      'scrollbar',
     ) as HTMLCollectionOf<HTMLElement>;
     const scrollElement = document.getElementsByClassName(
       style.secondcolumn,
@@ -108,7 +108,7 @@ const AnimePage: React.FC = () => {
 
   return (
     <div>
-      <div className={style.scrollbar} />
+      <div className={'scrollbar'} />
       <div className={style.wrapper}>
         <div className={style.firscolumn}>
           <div className={style.poster}>

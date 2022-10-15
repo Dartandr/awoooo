@@ -1,6 +1,14 @@
-import { createModel } from '@rematch/core';
-import { RootModel } from './index';
+import { createSlice } from '@reduxjs/toolkit';
+import {ICheckbox} from '@/types';
+import updateCheckbox from '@/components/helpers/updateCheckboxData'
 
+interface IState {
+  genres: ICheckbox;
+  status: ICheckbox;
+  types: ICheckbox;
+  rating: ICheckbox;
+  animes: Array<IAnimes>;
+}
 interface IAnimes {
   id: string;
   title: string;
@@ -12,25 +20,24 @@ interface IAnimes {
   userStatus: string;
 }
 
-interface ICheckbox {
-  status: Array<string>;
-  types: Array<string>;
-  rating: Array<string>;
-  genres: Array<string>;
-}
-
-interface IListState {
-  filters: ICheckbox;
-  animes: Array<IAnimes>;
-}
-
-const initialState: IListState = {
-  filters: {
-    status: [],
-    types: [],
-    rating: [],
-    genres: [],
+const initState: IState = {
+  status: {
+    included: [],
+    discluded: [],
   },
+  types: {
+    included: [],
+    discluded: [],
+  },
+  rating: {
+    included: [],
+    discluded: [],
+  },
+  genres: {
+    included: [],
+    discluded: [],
+  },
+
   animes: [
     {
       id: '60254fb2f578d98d81f766f3',
@@ -174,56 +181,32 @@ const initialState: IListState = {
     },
   ],
 };
-export const list = createModel<RootModel>()({
-  state: initialState,
+
+
+export const listSlice = createSlice({
+  name: 'list',
+  initialState: initState,
   reducers: {
-    changeStatus: (state, payload: Array<string>) => ({
-      ...state,
-      filters: {...state.filters, status: payload,}
-    }),
-    changeTypes: (state, payload: Array<string>) => ({
-      ...state,
-      filters: {...state.filters, types: payload,}
-    }),
-    changeRating: (state, payload: Array<string>) => ({
-      ...state,
-      filters: {...state.filters, rating: payload,}
-    }),
-    changeGenres: (state, payload: Array<string>) => ({
-      ...state,
-      filters: {...state.filters, genres: payload,}
-    }),
-  },
-  effects: (dispatch) => ({
-    changeFilter: ({ id, add, checkBoxType }, state) => {
-      const listState = state.list;
-      const generateArray = (filterElement: string): Array<string> => {
-        let array: Array<string>;
-        if (add) {
-          array = [...listState.filters[filterElement as keyof ICheckbox], id];
-        } else {
-          array = listState.filters[filterElement as keyof ICheckbox].filter(
-            (e: string) => e !== id,
-          );
-        }
-        return array;
-      };
-      switch (checkBoxType) {
-        case 'status':
-          dispatch.list.changeStatus(generateArray('status'));
-          break;
-        case 'type':
-          dispatch.list.changeTypes(generateArray('types'));
-          break;
-        case 'rating':
-          dispatch.list.changeRating(generateArray('rating'));
-          break;
-        case 'genres':
-          dispatch.list.changeGenres(generateArray('genres'));
-          break;
-        default:
-          break;
-      }
+    updateGenres: (state, action) => {
+      const newData = updateCheckbox(state.genres, action.payload);
+      state.genres = newData;
     },
-  }),
+    updateStatus: (state, action) => {
+      const newData = updateCheckbox(state.status, action.payload);
+      state.status = newData;
+    },
+    updateRating: (state, action) => {
+      const newData = updateCheckbox(state.rating, action.payload);
+      state.rating = newData;
+    },
+    updateTypes: (state, action) => {
+      const newData = updateCheckbox(state.types, action.payload);
+      state.types = newData;
+    },
+  },
 });
+
+export const { updateGenres, updateStatus, updateRating, updateTypes } =
+  listSlice.actions;
+
+export default listSlice.reducer;

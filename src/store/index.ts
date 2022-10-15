@@ -1,14 +1,24 @@
-import { Models } from '@rematch/core';
-import { player } from './player';
-import { navigation } from './navigation';
-import { list } from './list';
-import { user } from './user';
+import { configureStore } from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga';
+import { rootWatcher } from '../sagas';
+import listReducer from './listState';
+import navigationReducer from './navigationState';
+import playerReducer from './playerState';
+import userReducer from './userState';
 
-export interface RootModel extends Models<RootModel> {
-  player: typeof player;
-	navigation: typeof navigation;
-  list: typeof list;
-  user: typeof user;
-}
+const sagaMiddleware = createSagaMiddleware();
 
-export const models: RootModel = { player, navigation, list, user };
+export const store = configureStore({
+  reducer: {
+    list: listReducer,
+    navigation: navigationReducer,
+    player: playerReducer,
+    user: userReducer,
+  },
+  middleware: [sagaMiddleware],
+});
+
+sagaMiddleware.run(rootWatcher);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

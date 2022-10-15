@@ -113,7 +113,6 @@ const Chat: React.FC<IProps> = (props: IProps) => {
             : style.chatSelect
         }
         onClick={() => {
-          console.log('test');
           onDialogClick(element);
         }}
       >

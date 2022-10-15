@@ -58,7 +58,7 @@ const ListPage: React.FC = () => {
 
   const progressBar = () => {
     const progress = document.getElementsByClassName(
-      style.scrollbar,
+      'scrollbar',
     ) as HTMLCollectionOf<HTMLElement>;
     const scrollElement = document.getElementsByClassName(
       style.scrollableContent,
@@ -69,7 +69,7 @@ const ListPage: React.FC = () => {
   return (
     <div className={style.wrapper}>
       <div>
-        <div className={style.scrollbar} />
+        <div className={'scrollbar'} />
         <div className={style.content}>
           <div className={style.tableLabels}>
             <div>#</div>
