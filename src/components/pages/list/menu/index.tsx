@@ -4,12 +4,14 @@ import GenresCheckbox from './genres';
 import StatusCheckbox from './status';
 import TypesCheckbox from './type';
 import RatingCheckbox from './rating';
+import Tags from './tags';
 
 const ListMenu: React.FC = () => {
-    return (
+  return (
     <div className={style.wrapper}>
       <div className={style.sorting}>
-      <div className={style.sortTitle}>Status</div>
+        <Tags />
+        <div className={style.sortTitle}>Status</div>
         <div className={style.checkboxesWrapper}>
           <StatusCheckbox />
         </div>

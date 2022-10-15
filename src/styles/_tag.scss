@@ -1,0 +1,30 @@
+.tags{
+  padding: 10px 0px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.tag{
+  font-size: 12px;
+  font-family: "OpenSansSemiBold";
+  padding: 2px 8px;
+  height: 18px;
+  display: flex;
+  background-color: $mainBlue;
+  width: max-content;
+  border-radius: 4px;
+  gap: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 200ms ease-in-out;
+  &.discluded{
+    color: $mainOrange;
+  }
+  svg{
+    height: 9px;
+  }
+  align-items: center;
+  &:hover{
+    background-color: $secondaryBlue;
+  }
+}

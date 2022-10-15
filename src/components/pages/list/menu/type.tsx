@@ -5,22 +5,25 @@ import { AppDispatch, RootState } from '@/store';
 import { updateTypes } from '@/store/listState';
 
 const Type: React.FC = () => {
-  const list = useSelector((state: RootState) => state.list);
+  const typeState = useSelector((state: RootState) => state.list.types);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    console.log('types changed');
-  }, [list.types]);
+    console.log(typeState);
+  }, [typeState]);
 
-  const getStatus = (types: string) => {
-    if (list.types.included.indexOf(types) !== -1) {
-      return 'included';
+  const getStatus = (value:string) =>{
+    const current = typeState.find((element) => element.name === value)
+    if(!current){
+      return;
     }
-    if (list.types.discluded.indexOf(types) !== -1) {
-      return 'discluded';
+    if(current.status){
+      return 'included'
     }
-    return undefined;
-  };
+    if(!current.status){
+      return 'discluded'
+    }
+  }
 
   const types = ['TV', 'Movie', 'ONA', 'OVA', 'Special'];
   const typeCheckbox = types.map((type) => (
@@ -30,10 +33,7 @@ const Type: React.FC = () => {
       }}
       key={type}
     >
-      <CustomCheckbox
-        label={type === 'TV' ? 'TV Series' : type}
-        status={getStatus(type)}
-      />
+      <CustomCheckbox label={type === 'TV' ? 'TV Series' : type} status={getStatus(type)}/>
     </div>
   ));
 

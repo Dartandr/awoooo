@@ -1,25 +1,28 @@
-import React,  {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import CustomCheckbox from '@/components/atoms/CustomCheckBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store';
-import {updateGenres} from '@/store/listState'
- 
+import { updateGenres } from '@/store/listState';
+
 const Genres: React.FC = () => {
-  const list = useSelector((state: RootState) => state.list);
+  const genresState = useSelector((state: RootState) => state.list.genres);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    console.log('genres.changed')
-  }, [list.genres]);
+    console.log(genresState);
+  }, [genresState]);
 
-  const getStatus = (genre: string) => {
-    if(list.genres.included.indexOf(genre) !== -1){
+  const getStatus = (value:string) =>{
+    const current = genresState.find((element) => element.name === value)
+    if(!current){
+      return;
+    }
+    if(current.status){
       return 'included'
     }
-    if(list.genres.discluded.indexOf(genre) !== -1){
+    if(!current.status){
       return 'discluded'
     }
-    return undefined
   }
 
   const genres = [
@@ -68,7 +71,12 @@ const Genres: React.FC = () => {
     'Yuri',
   ];
   const genresCheckbox = genres.map((genre) => (
-    <div onClick={()=>{dispatch(updateGenres(genre))}} key={genre}>
+    <div
+      onClick={() => {
+        dispatch(updateGenres(genre));
+      }}
+      key={genre}
+    >
       <CustomCheckbox label={genre} status={getStatus(genre)}/>
     </div>
   ));

@@ -14,10 +14,11 @@
     position: absolute;
 }
 .spacingline{
-    margin: 5px 13px 0 13px;
+    margin: 10px 13px;
     border-radius: 2px 2px 2px 2px;
     background-color: $mainBlue;
     min-height: 2px;
+
 }
 .type{
     color: white;
@@ -27,11 +28,17 @@
     margin-top: 11px;
 }
 .sortTitle{
-    color: $fontBlue;
+    color: #fff;
     font-size: 18px;
     font-family: "OpenSansSemiBold";
     margin-left: 13px;
     margin-top: 0px;
+    span{
+        font-size: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+        color: $fontBlue;
+    }
 }
 .checkboxesWrapper{
     margin-left: 13px;

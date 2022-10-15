@@ -1,4 +1,5 @@
 export interface ICheckbox {
-  included: Array<string>;
-  discluded: Array<string>;
+  name: string,
+  status: boolean;
+  filter?: 'genres' | 'status' | 'types' | 'rating';
 }

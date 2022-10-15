@@ -5,7 +5,7 @@ interface IState {
 }
 
 const initialState: IState = {
-  uid: null,
+  uid: 1,
 };
 
 export const userSlice = createSlice({

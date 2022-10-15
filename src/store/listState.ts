@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {ICheckbox} from '@/types';
-import updateCheckbox from '@/components/helpers/updateCheckboxData'
+import { ICheckbox } from '@/types';
+import updateCheckbox from '@/components/helpers/updateCheckboxData';
 
 interface IState {
-  genres: ICheckbox;
-  status: ICheckbox;
-  types: ICheckbox;
-  rating: ICheckbox;
+  genres: Array<ICheckbox>;
+  status: Array<ICheckbox>;
+  types: Array<ICheckbox>;
+  rating: Array<ICheckbox>;
   animes: Array<IAnimes>;
 }
 interface IAnimes {
@@ -21,22 +21,10 @@ interface IAnimes {
 }
 
 const initState: IState = {
-  status: {
-    included: [],
-    discluded: [],
-  },
-  types: {
-    included: [],
-    discluded: [],
-  },
-  rating: {
-    included: [],
-    discluded: [],
-  },
-  genres: {
-    included: [],
-    discluded: [],
-  },
+  status: [],
+  types: [],
+  rating: [],
+  genres: [],
 
   animes: [
     {
@@ -181,32 +169,41 @@ const initState: IState = {
     },
   ],
 };
-
+interface IPayload{
+  value: string,
+  filter: 'genres' | 'status' | 'rating' | 'types'
+}
 
 export const listSlice = createSlice({
   name: 'list',
   initialState: initState,
   reducers: {
     updateGenres: (state, action) => {
-      const newData = updateCheckbox(state.genres, action.payload);
-      state.genres = newData;
+      state.genres = updateCheckbox(state.genres, action.payload, 'genres');
     },
     updateStatus: (state, action) => {
-      const newData = updateCheckbox(state.status, action.payload);
-      state.status = newData;
+      state.status = updateCheckbox(state.status, action.payload, 'status');
     },
     updateRating: (state, action) => {
-      const newData = updateCheckbox(state.rating, action.payload);
-      state.rating = newData;
+      state.rating = updateCheckbox(state.rating, action.payload, 'rating');
     },
     updateTypes: (state, action) => {
-      const newData = updateCheckbox(state.types, action.payload);
-      state.types = newData;
+      state.types = updateCheckbox(state.types, action.payload, 'types');
     },
+    removeTag: (state, action:{payload: IPayload}) => {
+      const newData = state[action.payload.filter].filter(element => element.name !== action.payload.value)
+      state[action.payload.filter] = newData
+    },
+    clearAll: (state) => {
+      state.genres = []
+      state.rating = []
+      state.status = []
+      state.types = []
+    } 
   },
 });
 
-export const { updateGenres, updateStatus, updateRating, updateTypes } =
+export const { updateGenres, updateStatus, updateRating, updateTypes, removeTag, clearAll } =
   listSlice.actions;
 
 export default listSlice.reducer;
