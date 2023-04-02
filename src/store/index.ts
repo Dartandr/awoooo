@@ -5,6 +5,7 @@ import listReducer from './listState';
 import navigationReducer from './navigationState';
 import playerReducer from './playerState';
 import userReducer from './userState';
+import libraryReducer from './libraryState';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -14,6 +15,7 @@ export const store = configureStore({
     navigation: navigationReducer,
     player: playerReducer,
     user: userReducer,
+    library: libraryReducer,
   },
   middleware: [sagaMiddleware],
 });

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from '@/store';
 import IconMaximize from '@/assets/icons/icon-maximize.svg';
 import IconMinimize from '@/assets/icons/icon-minimize.svg';
 import IconCross from '@/assets/icons/icon-cross.svg';
@@ -14,10 +14,18 @@ import Profile from './components/pages/profile';
 import List from './components/pages/list';
 import Library from './components/pages/library';
 import Friends from './components/pages/friends';
+import { updateLibrary } from './store/libraryState';
+import { getLocalLibrary } from './components/pages/library/libraryWork';
 
 const Main: React.FC = () => {
-
   const UID = useSelector((state: RootState) => state.user.uid);
+  const dispatcher = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    (async () => {
+      dispatcher(updateLibrary(await getLocalLibrary()));
+    })();
+  }, []);
   return (
     <div className="wrapper">
       <header>
@@ -46,7 +54,10 @@ const Main: React.FC = () => {
         <div className="App">
           <Routes>
             <Route path="login" element={<LoginPage />} />
-            <Route path="/" element={UID ? <Content /> : <Navigate replace to="/login"/>}>
+            <Route
+              path="/"
+              element={UID ? <Content /> : <Navigate replace to="/login" />}
+            >
               <Route path="anime" element={<Animes />} />
               <Route path="anime/:animeId" element={<Anime />} />
               <Route path="profile" element={<Profile />} />

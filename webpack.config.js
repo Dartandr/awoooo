@@ -27,6 +27,10 @@ const copy = () => {
       from: path.resolve(__dirname, 'src/mpv'),
       to: path.resolve(__dirname, 'dist/mpv'),
     },
+    {
+      from: path.resolve(__dirname, 'node_modules/@ffmpeg-installer/win32-x64/ffmpeg.exe'),
+      to: path.resolve(__dirname, 'dist/node_modules/@ffmpeg-installer/win32-x64/ffmpeg.exe'),
+    },
   ];
   if (!devMode) {
     patterns.push({

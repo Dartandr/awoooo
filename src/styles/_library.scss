@@ -1,0 +1,19 @@
+.library{
+  &-card{
+    img{
+      position: absolute;
+      height: 170px;
+      width: 114px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    &-dim{
+      border-radius: 8px;
+      position: absolute;
+      height: 170px;
+      width: 114px;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+    }
+    cursor: pointer;
+  }
+}
